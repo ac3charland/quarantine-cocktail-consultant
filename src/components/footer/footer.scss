@@ -1,0 +1,15 @@
+@import "../../globals.scss";
+
+.footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: $secondary-background-color;
+
+    &__text {
+        margin: 0.5rem auto;
+    }
+
+    &__disclaimer {
+        font-size: 10px;
+    }
+}

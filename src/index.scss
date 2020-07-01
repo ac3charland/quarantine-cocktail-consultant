@@ -1,0 +1,98 @@
+@import "./globals.scss";
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: $font-size-normal;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: right;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+p {
+  font-size: $font-size-large;
+
+  @include small-screen {
+    font-size: $font-size-normal;
+  }
+}
+
+a {
+  color: $link-color;
+
+  &:hover {
+    color: $link-hover-color;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.content-wrapper {
+  margin: 0 auto;
+  position: relative;
+  font-size: $font-size-normal;
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.page-wrapper {
+  flex-grow: 2;
+  padding: 2rem 4rem;
+  max-width: $content-width;
+
+  @include small-screen {
+    padding: 1rem 2rem;
+  }
+}

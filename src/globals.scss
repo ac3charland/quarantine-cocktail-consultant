@@ -1,0 +1,77 @@
+$content-width: 120rem;
+$navbar-height: 5rem;
+
+$font-size-h1: 5rem;
+$font-size-h2: 4rem;
+$font-size-h3: 3rem;
+$font-size-h4: 2.5rem;
+$font-size-h5: 2rem;
+$font-size-h6: 1.7rem;
+$font-size-large: 1.5rem;
+$font-size-normal: 1.3rem;
+$font-size-small: 1.1rem;
+
+$secondary-background-color: lightgray;
+$link-color: black;
+$link-hover-color: darkgray;
+
+@mixin small-screen {
+    @media (max-width: 700px) {
+        @content;
+    }
+}
+
+// Cross-browser animation mixins from https://joshbroton.com/quick-fix-sass-mixins-for-css-keyframe-animations/
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@include keyframes(fadeInFromNone) {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}

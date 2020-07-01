@@ -1,0 +1,69 @@
+@import "../../globals.scss";
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 4rem 0;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $secondary-background-color;
+  z-index: 2;
+
+  &__heading {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__links {
+    display: flex;
+  }
+
+  &__link {
+    padding: 0.5rem 0;
+    margin-left: 3rem;
+    font-size: $font-size-large;
+  }
+
+  .icon {
+    color: black;
+    display: none;
+    padding: 2rem 2rem 1rem;
+  }
+
+  @include small-screen {
+    padding: 1rem 2rem;
+
+    &__heading {
+      font-size: $font-size-small;
+    }
+
+    &__links {
+      flex-direction: column;
+      text-align: right;
+    }
+
+    &__link {
+      background-color: $secondary-background-color;
+      margin: 0 -2rem 0 0;
+      padding: 1rem;
+      font-size: $font-size-small;
+
+      &.closed {
+        opacity: 0%;
+        display: none;
+      }
+
+      &.open {
+        @include animation("fadeInFromNone .2s");
+      }
+    }
+
+    .icon {
+      display: block;
+      font-size: 1.5rem;
+      padding: 0;
+      text-align: right;
+    }
+  }
+}
