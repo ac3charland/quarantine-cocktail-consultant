@@ -7,8 +7,7 @@ describe('HomePage', () => {
 
     beforeEach(() => {
         props = {
-            homePageVisted: true,
-            markAsVisited: jest.fn(),
+            retrieveIngredients: jest.fn(),
         }
 
         render = (changedProps = {}) => mount(<HomePage {...props} {...changedProps} />)
@@ -23,13 +22,13 @@ describe('HomePage', () => {
         [
             {
                 description: 'undefined props',
-                state: {app: {}},
+                state: {},
                 expected: {},
             },
             {
                 description: 'populated props',
-                state: {app: {homePageVisted: true}},
-                expected: {visited: true},
+                state: {},
+                expected: {},
             },
         ].forEach(test => {
             it(`correctly maps state to props with ${test.description}`, () => {
