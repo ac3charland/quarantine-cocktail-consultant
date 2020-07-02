@@ -34,8 +34,6 @@ export default class HomePage extends Component {
 
         let filteredRecipes
 
-
-
         if (recipes) {
             const sortedRecipes = recipes.sort(sortObjectsByName)
             filteredRecipes = filter ? sortedRecipes.filter(recipe => recipe.name.toLowerCase().includes(filter.toLowerCase())) : sortedRecipes
@@ -61,7 +59,7 @@ export default class HomePage extends Component {
                 {filteredRecipes && filteredRecipes.map((recipe, idx) => {
                     const colors = ['red', 'green', 'yellow']
                     const colorIndex = idx % 3
-                    return <SearchResult key={idx} name={recipe.name} img={recipe.img} color={colors[colorIndex]} />
+                    return <SearchResult key={idx} name={recipe.name} img={recipe.img} color={colors[colorIndex]} id={recipe.id} />
                 })}
             </div>
         )

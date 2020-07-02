@@ -7,7 +7,7 @@ export function searchForRecipes(ingredient) {
 
         return axios.get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient.toLowerCase()}`)
             .then(data => {
-                const recipes = data?.data?.drinks?.map(drink => ({name: drink.strDrink, img: drink.strDrinkThumb}))
+                const recipes = data?.data?.drinks?.map(drink => ({name: drink.strDrink, img: drink.strDrinkThumb, id: drink.idDrink}))
                 if (recipes?.length > 0) {
                     dispatch({type: RECIPE_SEARCH_SUCCESS, data: recipes})
                 }
