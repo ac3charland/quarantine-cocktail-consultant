@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import './recipe-page.scss'
 import {connect} from 'react-redux'
 import {searchForRecipeById} from '../../actions/search-for-recipe'
+import {emptyfunction} from '../../utils/constants'
 
 const cb = 'recipe'
 
@@ -13,13 +14,17 @@ export default class RecipePage extends Component {
         name: PropTypes.string,
         img: PropTypes.string,
         instructions: PropTypes.string,
-        ingredients: PropTypes.string,
-        loaded: PropTypes.string,
+        ingredients: PropTypes.array,
+        loaded: PropTypes.bool,
+    }
+
+    static defaultProps = {
+        searchForRecipeById: emptyfunction,
     }
 
     componentDidMount() {
         // eslint-disable-next-line react/prop-types
-        const {id} = this.props.match.params
+        const {id} = this.props.match?.params || {}
         this.props.searchForRecipeById(id)
     }
 
@@ -32,7 +37,7 @@ export default class RecipePage extends Component {
                 {loaded && (
                     <div className={`${cb}__flex-container`}>
                         <div className={`${cb}__image-wrapper`}>
-                            <img className={`${cb}__image`} src={img} alt='Recipe' />
+                            <img className={`${cb}__image`} src={img} alt={''} />
                         </div>
                         <div className={`${cb}__text-wrapper`}>
                             <h3 className={`${cb}__subheading`}>Ingredients</h3>
