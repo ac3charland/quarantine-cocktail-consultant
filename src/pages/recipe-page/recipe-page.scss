@@ -1,0 +1,79 @@
+@import "../../globals.scss";
+
+.recipe {
+    &__red {
+        background-color: $background-red;
+    }
+
+    &__green {
+        background-color: $background-green;
+    }
+
+    &__yellow {
+        background-color: $background-yellow;
+    }
+
+    &__heading {
+        background-color: $background-red;
+        width: 60%;
+        min-width: max-content;
+        padding: 2rem;
+        font-size: $font-size-h1;
+        color: white;
+        white-space: nowrap;
+        margin-bottom: 7rem;
+    }
+
+    &__flex-container {
+        display: flex;
+    }
+
+    &__image-wrapper {
+        max-width: 35%;
+    }
+
+    &__image {
+        width: 100%;
+    }
+
+    &__text-wrapper {
+        margin-left: 4rem;
+    }
+
+    &__subheading {
+        font-size: $font-size-h3;
+    }
+
+    &__ingredient {
+        font-size: $font-size-h6;
+    }
+
+    &__instructions {
+        padding-top: 2rem;
+        font-family: $sans-serif;
+        font-size: $font-size-h6;
+    }
+
+    &__back-button {
+        display: inline-block;
+        border-radius: 4px;
+        border: 1px solid gray;
+        background-color: $text-color;
+        color: white;
+        font-family: $serif;
+        font-size: $font-size-h3;
+        padding: 0 1rem;
+        margin-top: 15rem;
+        @include transition(all 0.2s);
+        text-decoration: none;
+
+        @include small-screen {
+            font-size: $font-size-h5;
+        }
+
+        &:hover {
+            background-color: $primary-background-color;
+            color: $text-color;
+        }
+    }
+}
