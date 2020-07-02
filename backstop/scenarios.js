@@ -21,5 +21,6 @@ module.exports = backstop.config({
     scenarios: [
         cs({label: 'home-page'}),
         cs({label: 'search', onReadyScript: 'search.js'}),
+        cs({label: 'search-no-results', onReadyScript: 'search.js', args: {search: 'none'}}),
     ]
 })

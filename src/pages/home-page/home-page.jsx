@@ -19,6 +19,7 @@ export default class HomePage extends Component {
     static propTypes = {
         retrieveIngredients: PropTypes.func,
         recipes: PropTypes.array,
+        noResults: PropTypes.bool,
     }
 
     componentDidMount() {
@@ -28,7 +29,7 @@ export default class HomePage extends Component {
     handleChange = e => this.setState({filter: e.target.value})
 
     render() {
-        const {recipes} = this.props
+        const {recipes, noResults} = this.props
         const {filter} = this.state
 
         let filteredRecipes
@@ -56,6 +57,7 @@ export default class HomePage extends Component {
                         </div>
                     )}
                 </div>
+                {noResults && <p className={`${cb}__error`}>There were no results for your search. Try searching another ingredient.</p>}
                 {filteredRecipes && filteredRecipes.map((recipe, idx) => {
                     const colors = ['red', 'green', 'yellow']
                     const colorIndex = idx % 3
@@ -69,6 +71,7 @@ export default class HomePage extends Component {
 
 export const mapStateToProps = state => ({
     recipes: state.recipes.recipes,
+    noResults: state.recipes.noResults,
 })
 
 const mapDispatchToProps = dispatch => ({

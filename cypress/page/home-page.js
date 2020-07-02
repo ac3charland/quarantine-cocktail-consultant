@@ -4,6 +4,7 @@ const HomePage = {
     submitSearch: '.search-bar__submit',
     results: '.search-result',
     filterField: '#filter-input',
+    noResultsError: '.home__error',
 }
 
 export default HomePage

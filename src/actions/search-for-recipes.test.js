@@ -21,6 +21,16 @@ describe('Search for Recipes', () => {
         })
     })
 
+    it('handles no results', () => {
+        axios.get = jest.fn(() => Promise.resolve({data: {drinks: []}}))
+        return store.dispatch(searchForRecipes('none')).then(() => {
+            expect(store.getActions()).toEqual([
+                {type: 'RECIPE_SEARCH'},
+                {type: 'RECIPE_SEARCH_NO_RESULTS'},
+            ])
+        })
+    })
+
     it('handles API error', () => {
         axios.get = jest.fn(() => Promise.reject())
         return store.dispatch(searchForRecipes('gonnaFail')).then(() => {

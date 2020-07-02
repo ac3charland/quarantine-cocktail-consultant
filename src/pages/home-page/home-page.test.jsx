@@ -44,6 +44,12 @@ describe('HomePage', () => {
         expect(component.find(SearchResult).length).toEqual(1)
     })
 
+    it('displays no results error message', () => {
+        props.noResults = true
+        const component = render()
+        expect(component.find(`.${cb}__error`).length).toEqual(1)
+    })
+
     describe('mapStateToProps', () => {
         [
             {
@@ -53,8 +59,8 @@ describe('HomePage', () => {
             },
             {
                 description: 'populated props',
-                state: {recipes: {recipes: ['a', 'b', 'c']}},
-                expected: {recipes: ['a', 'b', 'c']},
+                state: {recipes: {recipes: ['a', 'b', 'c'], noResults: true}},
+                expected: {recipes: ['a', 'b', 'c'], noResults: true},
             },
         ].forEach(test => {
             it(`correctly maps state to props with ${test.description}`, () => {
