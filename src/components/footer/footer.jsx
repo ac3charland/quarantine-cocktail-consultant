@@ -7,8 +7,7 @@ const cb = 'footer'
 export default function Footer(props) {
     return (
         <div className={cb}>
-            <div className={`${cb}__text`}>Copyright &copy; {moment().format('YYYY')} [CHANGE_ME_SITE_COMPANY_HERE]</div>
-            <div className={`${cb}__disclaimer`}>[CHANGE_ME_OPTIONAL_DISCLAIMER]</div>
+            <div className={`${cb}__text`}>Copyright &copy; {moment().format('YYYY')} <a href='https://www.alexcharland.com'>Alex Charland</a></div>
         </div>
     )
 }

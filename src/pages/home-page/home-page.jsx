@@ -33,7 +33,7 @@ export default class HomePage extends Component {
 
         let filteredRecipes
 
-        
+
 
         if (recipes) {
             const sortedRecipes = recipes.sort(sortObjectsByName)
@@ -42,16 +42,25 @@ export default class HomePage extends Component {
 
         return (
             <div className={cb}>
-                <ConnectedSearchBar />
-                {!!filteredRecipes && (
-                    <div className={`${cb}__filter-wrapper`}>
-                        <label htmlFor='filter-input'>Filter results</label>
-                        <input id='filter-input' type='text' value={this.state.filter} onChange={this.handleChange} />
-                    </div>
-                )}
-                {filteredRecipes && filteredRecipes.map((recipe, idx) => (
-                    <SearchResult key={idx} name={recipe.name} img={recipe.img} />
-                ))}
+                <h2 className={`${cb}__heading`}>Find the perfect quarantine cocktail.</h2>
+                <div className={`${cb}__about`}>
+                    <p>All of us have been coping with quarantine in different ways.</p>
+                    <p>For those of us turning to drink, here's a tool to help you try something new.</p>
+                </div>
+                <div className={`${cb}__form-wrapper`}>
+                    <ConnectedSearchBar />
+                    {!!filteredRecipes && (
+                        <div className={`${cb}__filter-wrapper`}>
+                            <label htmlFor='filter-input' className={`${cb}__filter-label`}>Filter results: </label>
+                            <input id='filter-input' className={`${cb}__filter-input`} type='text' value={this.state.filter} onChange={this.handleChange} />
+                        </div>
+                    )}
+                </div>
+                {filteredRecipes && filteredRecipes.map((recipe, idx) => {
+                    const colors = ['red', 'green', 'yellow']
+                    const colorIndex = idx % 3
+                    return <SearchResult key={idx} name={recipe.name} img={recipe.img} color={colors[colorIndex]} />
+                })}
             </div>
         )
     }

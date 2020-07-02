@@ -1,5 +1,51 @@
 @import "../../globals.scss";
 
 .home {
-  
+  text-align: center;
+
+  &__heading {
+    font-size: $font-size-h2;
+    padding: 8rem 0 4rem;
+
+    @include small-screen {
+      font-size: $font-size-h4;
+      padding: 4rem 0 2rem;
+    }
+  }
+
+  &__about {
+    p {
+      font-size: $font-size-h6;
+      font-family: $sans-serif;
+    }
+    padding-bottom: 2rem;
+  }
+
+  &__form-wrapper {
+    width: 40rem;
+    margin: 0 auto;
+
+    @include small-screen {
+      width: 100%;
+    }
+  }
+
+  &__filter-wrapper {
+    padding: 2rem 0 4rem;
+    display: flex;
+    flex-direction: column;
+
+    @include small-screen {
+      padding-bottom: 2rem;
+    }
+  }
+
+  &__filter-label {
+    text-align: left;
+    padding-bottom: 0.5rem;
+  }
+
+  &__filter-input {
+    font-size: $font-size-h4;
+  }
 }

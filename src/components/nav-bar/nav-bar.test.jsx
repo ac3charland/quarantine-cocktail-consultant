@@ -1,4 +1,4 @@
-import NavBar from './nav-bar'
+import {NavBar} from './nav-bar'
 
 const cb = 'navbar'
 
@@ -14,22 +14,5 @@ describe('NavBar', () => {
     it('renders without crashing', () => {
         const component = render()
         expect(component.find(`.${cb}`).length).toEqual(1)
-        expect(component.find(`.${cb}__home`).prop('href')).toEqual('/')
-    })
-
-    it('toggles between open and closed', () => {
-        const component = render()
-
-        expect(component.find('button.closed').length).toEqual(1)
-        expect(component.find('button.open').length).toEqual(0)
-        expect(component.find('.fa-bars').length).toEqual(1)
-        expect(component.find('.fa-times').length).toEqual(0)
-
-        component.find('.icon').simulate('click')
-        
-        expect(component.find('button.closed').length).toEqual(0)
-        expect(component.find('button.open').length).toEqual(1)
-        expect(component.find('.fa-bars').length).toEqual(0)
-        expect(component.find('.fa-times').length).toEqual(1)
     })
 })

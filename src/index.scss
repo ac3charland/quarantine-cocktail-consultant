@@ -6,11 +6,12 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: $sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: $font-size-normal;
+  background-color: $primary-background-color;
+  color: $text-color;
 }
 
 code {
@@ -44,6 +45,7 @@ h5,
 h6,
 p {
   margin: 0;
+  font-family: $serif;
 }
 
 p {
@@ -91,6 +93,7 @@ a {
   flex-grow: 2;
   padding: 2rem 4rem;
   max-width: $content-width;
+  margin: 0 auto;
 
   @include small-screen {
     padding: 1rem 2rem;

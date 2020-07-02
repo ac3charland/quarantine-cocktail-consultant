@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {searchForRecipes} from '../../actions/search-for-recipes'
+import './search-bar.scss'
 
 const cb = 'search-bar'
 
@@ -30,10 +31,15 @@ export default class SearchBar extends Component {
         const {search} = this.state
         return (
             <div className={cb}>
-                <form onSubmit={this.handleSubmit}>
-                    <input className={`${cb}__input`} type='text' value={search} onChange={this.handleChange}/>
-                    <input className={`${cb}__submit`} type='submit'/>
-                </form>
+                <div className={`${cb}__form-wrapper`}>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className={`${cb}__input-wrapper`}>
+                            <input id='search-input' className={`${cb}__input`} type='text' value={search} onChange={this.handleChange} />
+                            <input className={`${cb}__submit`} type='submit' value='Search'/>
+                        </div>
+                        <label htmlFor='search-input' className={`${cb}__subheading`}>Enter an ingredient to see a list of compatible drinks.</label>
+                    </form>
+                </div>
             </div>
         )
     }

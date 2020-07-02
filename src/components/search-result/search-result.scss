@@ -2,10 +2,55 @@
 
 .search-result {
     display: flex;
-    padding: 2rem 0;
+    padding: 2.5rem;
+    align-items: flex-end;
+    margin: 2rem 0;
+    @include transition(all 0.2s)
+
+    @include small-screen {
+        padding: 1.5rem;
+    }
+
+    &__red {
+        background-color: $background-red;
+    }
+
+    &__green {
+        background-color: $background-green;
+    }
+
+    &__yellow {
+        background-color: $background-yellow;
+    }
 
     &__image {
         max-width: 15rem;
         margin-right: 2rem;
+        border-radius: 20px;
+
+        @include small-screen {
+            max-width: 7rem;
+        }
     }
+
+    &__heading {
+        font-size: $font-size-h1;
+        color: white;
+        text-align: left;
+        width: 60%;
+
+        @include small-screen {
+            font-size: $font-size-h4;
+            width: 100%;
+        }
+    }
+
+    &:hover {
+        @include scale(1.1);
+
+        @include small-screen {
+            @include scale(1);
+        }
+    }
+
 }

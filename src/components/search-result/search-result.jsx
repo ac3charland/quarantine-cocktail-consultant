@@ -4,14 +4,15 @@ import './search-result.scss'
 
 const cb = 'search-result'
 
-export const SearchResult = ({name, img}) => (
-    <div className={cb}>
+export const SearchResult = ({name, img, color}) => (
+    <div className={`${cb} ${cb}__${color}`}>
         <img className={`${cb}__image`} src={img} alt={name} />
-        <div>{name}</div>
+        <h3 className={`${cb}__heading`}>{name}</h3>
     </div>
 )
 
 SearchResult.propTypes = {
     name: PropTypes.string,
     img: PropTypes.string,
+    color: PropTypes.string,
 }
