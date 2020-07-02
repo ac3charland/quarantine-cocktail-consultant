@@ -1,11 +1,10 @@
-import NavBar from '../page/nav-bar'
 import HomePage from '../page/home-page'
-import SecondaryPage from '../page/secondary-page'
 
 context('Page Navigation', () => {
     beforeEach(() => {
         cy.server()
         cy.route('GET', 'https://www.thecocktaildb.com/api/json/v1/1/list*', {data: {drinks: [{strIngredient1: 'a'}]}}).as('getIngredients')
+        cy.route('GET', 'https://www.thecocktaildb.com/api/json/v1/1/filter*', {drinks: [{strDrink: 'a', strDrinkThumb: 'https://pyxis.nymag.com/v1/imgs/cae/b67/d03197f2d7f6b47586148fd421942a6a35-imagination.2x.rhorizontal.w700.jpg'}]}).as('search')
     })
 
     it('navigates to proper pages with navbar links', () => {
@@ -13,14 +12,10 @@ context('Page Navigation', () => {
         cy.wait('@getIngredients')
         cy.get(HomePage.wrapper)
 
-        cy.get(NavBar.link).eq(0).click()
+        cy.get(HomePage.searchField).type('test')
+        cy.get(HomePage.submitSearch).click()
 
-        cy.url().should('contain', '/secondary')
-        cy.get(SecondaryPage.wrapper)
-
-        cy.get(NavBar.homeLink).click()
-
-        cy.url().should('contain', '/')
-        cy.get(HomePage.wrapper)
+        cy.wait('@search')
+        cy.get(HomePage.results)
     })
 })

@@ -1,4 +1,5 @@
 import HomePage, {mapStateToProps} from './home-page'
+jest.mock('../../components/search-bar/search-bar')
 
 const cb = 'home'
 
@@ -22,13 +23,13 @@ describe('HomePage', () => {
         [
             {
                 description: 'undefined props',
-                state: {},
+                state: {recipes: {}},
                 expected: {},
             },
             {
                 description: 'populated props',
-                state: {},
-                expected: {},
+                state: {recipes: {recipes: ['a', 'b', 'c']}},
+                expected: {recipes: ['a', 'b', 'c']},
             },
         ].forEach(test => {
             it(`correctly maps state to props with ${test.description}`, () => {

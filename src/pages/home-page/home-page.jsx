@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import './home-page.scss'
 import {connect} from 'react-redux'
 import {retrieveIngredients} from '../../actions/get-ingredients'
+import {ConnectedSearchBar} from '../../components/search-bar/search-bar'
+import {SearchResult} from '../../components/search-result/search-result'
 
 const cb = 'home'
 
@@ -10,6 +12,7 @@ export default class HomePage extends Component {
 
     static propTypes = {
         retrieveIngredients: PropTypes.func,
+        recipes: PropTypes.array,
     }
 
     componentDidMount() {
@@ -17,10 +20,13 @@ export default class HomePage extends Component {
     }
 
     render() {
+        const {recipes} = this.props
         return (
             <div className={cb}>
-                <h1 className={`${cb}__heading`}>Long home page!</h1> 
-                <p>(Footer is below the fold)</p>
+                <ConnectedSearchBar />
+                {recipes && recipes.map((recipe, idx) => (
+                    <SearchResult key={idx} name={recipe.name} img={recipe.img}/>
+                ))}
             </div>
         )
     }
@@ -28,6 +34,7 @@ export default class HomePage extends Component {
 }
 
 export const mapStateToProps = state => ({
+    recipes: state.recipes.recipes,
 })
 
 const mapDispatchToProps = dispatch => ({

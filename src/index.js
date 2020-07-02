@@ -7,8 +7,6 @@ import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import NavBar from './components/nav-bar/nav-bar'
 import Footer from './components/footer/footer'
 import {ConnectedHomePage} from './pages/home-page/home-page'
-import SecondaryPage from './pages/secondary-page/secondary-page'
-import {SECONDARY_PAGE_URL} from './utils/constants'
 import makeStore from './store'
 
 const store = makeStore()
@@ -23,7 +21,6 @@ ReactDOM.render(
             <div className='page-wrapper'>
               <Switch>
                 <Route exact path='/' component={ConnectedHomePage} />
-                <Route exact path={SECONDARY_PAGE_URL} component={SecondaryPage} />
               </Switch>
             </div>
             <Footer />

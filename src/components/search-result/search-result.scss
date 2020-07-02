@@ -1,0 +1,11 @@
+@import '../../globals.scss';
+
+.search-result {
+    display: flex;
+    padding: 2rem 0;
+
+    &__image {
+        max-width: 15rem;
+        margin-right: 2rem;
+    }
+}
