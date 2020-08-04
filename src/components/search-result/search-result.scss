@@ -1,11 +1,12 @@
 @import '../../globals.scss';
 
 .search-result {
+    $animation-width: 6rem;
     display: flex;
-    text-decoration: none;
-    padding: 2.5rem;
     align-items: flex-end;
+    text-decoration: none;
     margin: 2rem 0;
+    padding: 2.5rem $animation-width 2.5rem 2.5rem;
     @include transition(all 0.2s);
 
     @include small-screen {
@@ -46,11 +47,13 @@
         }
     }
 
+    &:focus,
     &:hover {
-        @include scale(1.1);
+        margin-left: $animation-width;
+        padding-right: 0rem;
 
         @include small-screen {
-            @include scale(1);
+            margin-left: 0;
         }
     }
 
