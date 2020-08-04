@@ -22,14 +22,32 @@
         color: white;
         white-space: nowrap;
         margin-bottom: 7rem;
+
+        @include small-screen {
+            margin-bottom: 4rem;
+            width: 100%;
+            min-width: 0;
+            font-size: $font-size-h4;
+            box-sizing: border-box;
+            white-space: normal;
+        }
     }
 
     &__flex-container {
         display: flex;
+
+        @include small-screen {
+            flex-direction: column;
+        }
     }
 
     &__image-wrapper {
         max-width: 35%;
+
+        @include small-screen {
+            max-width: 100%;
+            margin-bottom: 2rem;
+        }
     }
 
     &__image {
@@ -38,6 +56,10 @@
 
     &__text-wrapper {
         margin-left: 4rem;
+
+        @include small-screen {
+            margin-left: 0;
+        }
     }
 
     &__subheading {
@@ -69,6 +91,7 @@
 
         @include small-screen {
             font-size: $font-size-h5;
+            margin-top: 8rem;
         }
 
         &:hover {
