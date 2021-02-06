@@ -28,7 +28,7 @@
     "backstop:approve": "sh backstop/run-backstop.sh approve",
     "cypress:open": "sh cypress/run-cypress.sh case:open",
     "cypress:test": "sh cypress/run-cypress.sh",
-    "test:ci": "npm run jest && npm run lint && npm run cypress:test",
+    "test:ci": "npm run lint && npm run jest && npm run cypress:test",
     "test": "npm run backstop:test && npm run test:ci",
     "major": "npm version --major",
     "minor": "npm version --minor",
