@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './home-page.scss'
 import {connect} from 'react-redux'
 import {retrieveIngredients} from '../../actions/get-ingredients'
-import {ConnectedSearchBar} from '../../components/search-bar/search-bar'
+import SearchBar from '../../components/search-bar/search-bar'
 import {SearchResult} from '../../components/search-result/search-result'
 import {sortObjectsByName} from '../../utils/sort'
 
@@ -47,7 +47,7 @@ export default class HomePage extends Component {
                     <p>For those of us turning to drink, here's a tool to help you try something new.</p>
                 </div>
                 <div className={`${cb}__form-wrapper`}>
-                    <ConnectedSearchBar />
+                    <SearchBar />
                     {!!filteredRecipes && (
                         <div className={`${cb}__filter-wrapper`}>
                             <label htmlFor='filter-input' className={`${cb}__filter-label`}>Filter results: </label>
