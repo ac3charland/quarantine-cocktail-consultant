@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker'
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 import {NavBar} from './components/nav-bar/nav-bar'
 import Footer from './components/footer/footer'
-import {ConnectedHomePage} from './pages/home-page/home-page'
+import HomePage from './pages/home-page/home-page'
 import makeStore from './store'
 import {ConnectedRecipePage} from './pages/recipe-page/recipe-page'
 
@@ -21,9 +21,9 @@ ReactDOM.render(
             <NavBar />
             <div className='page-wrapper'>
               <Switch>
-                <Route exact path='/' component={ConnectedHomePage} />
+                <Route exact path='/' component={HomePage} />
                 <Route path='/recipe/:id' component={ConnectedRecipePage} />
-                <Route component={ConnectedHomePage} />
+                <Route component={HomePage} />
               </Switch>
             </div>
             <Footer />
