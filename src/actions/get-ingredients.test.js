@@ -11,7 +11,7 @@ describe('Retrieve Ingredients', () => {
         axios.get = jest.fn(() => Promise.resolve({data: {drinks: [{strIngredient1: 'Apple juice'}, {strIngredient1: 'Orange juice'}]}}))
     })
 
-    it('dispatches correct action when markHomePageAsVisited is called', () => {
+    it('dispatches correct action when retrieveIngredients is called', () => {
         return store.dispatch(retrieveIngredients()).then(() => {
             expect(store.getActions()).toEqual([
                 {type: 'GET_INGREDIENTS'},

@@ -44,7 +44,8 @@ module.exports = {
         }
     ],
     plugins: [
-        'react'
+        'react',
+        'react-hooks'
     ],
     settings: {
         react: {
@@ -75,5 +76,6 @@ module.exports = {
         'space-before-function-paren': ['error', {anonymous: 'always', named: 'never', asyncArrow: 'always'}],
         'space-infix-ops': ['error', {int32Hint: false}],
         'spaced-comment': ['error', 'always'],
+        'eol-last': ['error', 'always']
     }
 }

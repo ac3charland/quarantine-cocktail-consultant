@@ -1,4 +1,5 @@
 import SearchBar from './search-bar'
+jest.mock('react-redux')
 
 const cb = 'search-bar'
 
@@ -19,8 +20,6 @@ describe('SearchBar', () => {
     it('sets value to state when input is typed in form', () => {
         const component = render()
         component.find(`.${cb}__input`).simulate('change', {target: {value: 'rum'}})
-        expect(component.state()).toEqual({
-            search: 'rum',
-        })
+        expect(component.find(`.${cb}__input`).props().value).toEqual('rum')
     })
 })

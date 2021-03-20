@@ -1,18 +1,38 @@
-import HomePage, {mapStateToProps} from './home-page'
+import configureStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import {Provider} from 'react-redux'
+import HomePage from './home-page'
 import {SearchResult} from '../../components/search-result/search-result'
-jest.mock('../../components/search-bar/search-bar')
+import {retrieveIngredients} from '../../actions/get-ingredients'
 
+const mockStore = configureStore([thunk])
 const cb = 'home'
 
+jest.mock('../../actions/get-ingredients', () => ({
+    retrieveIngredients: jest.fn(() => ({type: 'script'})),
+}))
+
 describe('HomePage', () => {
-    let props, render
+    let props, render, store, mockState
 
     beforeEach(() => {
-        props = {
-            retrieveIngredients: jest.fn(),
+        mockState = {
+            recipes: {
+                recipes: [
+                    {name: 'Orange juice', img: 'b.jpg'},
+                    {name: 'Apple juice', img: 'a.jpg'},
+                ],
+                noResults: true,
+            },
         }
 
-        render = (changedProps = {}) => mount(<HomePage {...props} {...changedProps} />)
+        store = mockStore(mockState)
+
+        render = (changedProps = {}) => mount(<Provider store={store}><HomePage {...props} {...changedProps} /></Provider>)
+    })
+
+    afterEach(() => {
+        jest.clearAllMocks()
     })
 
     it('renders without crashing', () => {
@@ -21,10 +41,6 @@ describe('HomePage', () => {
     })
 
     it('displays and sorts all recipes', () => {
-        props.recipes = [
-            {name: 'Orange juice', img: 'b.jpg'},
-            {name: 'Apple juice', img: 'a.jpg'},
-        ]
         const component = render()
         expect(component.find(SearchResult).at(0).prop('name')).toEqual('Apple juice')
         expect(component.find(SearchResult).at(0).prop('img')).toEqual('a.jpg')
@@ -33,40 +49,20 @@ describe('HomePage', () => {
     })
 
     it('displays and filters recipes', () => {
-        props.recipes = [
-            {name: 'Orange juice', img: 'b.jpg'},
-            {name: 'Apple juice', img: 'a.jpg'},
-        ]
         const component = render()
-        component.setState({filter: 'aPpLe'})
+        component.find('#filter-input').simulate('change', {target: {value: 'aPpLe'}})
         expect(component.find(SearchResult).at(0).prop('name')).toEqual('Apple juice')
         expect(component.find(SearchResult).at(0).prop('img')).toEqual('a.jpg')
         expect(component.find(SearchResult).length).toEqual(1)
     })
 
     it('displays no results error message', () => {
-        props.noResults = true
         const component = render()
         expect(component.find(`.${cb}__error`).length).toEqual(1)
     })
 
-    describe('mapStateToProps', () => {
-        [
-            {
-                description: 'undefined props',
-                state: {recipes: {}},
-                expected: {},
-            },
-            {
-                description: 'populated props',
-                state: {recipes: {recipes: ['a', 'b', 'c'], noResults: true}},
-                expected: {recipes: ['a', 'b', 'c'], noResults: true},
-            },
-        ].forEach(test => {
-            it(`correctly maps state to props with ${test.description}`, () => {
-                const result = mapStateToProps(test.state)
-                expect(result).toEqual(test.expected)
-            })
-        })
-    })
+    it('fetches recipes', () =>  {
+        render()
+        expect(retrieveIngredients).toHaveBeenCalledTimes(1)
+    }) 
 })

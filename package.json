@@ -23,6 +23,7 @@
     "jest": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .jsx --ext .js src cypress",
+    "lint:fix": "eslint --ext .jsx --ext .js src cypress --fix",
     "backstop:test": "sh backstop/run-backstop.sh test",
     "backstop:report": "sh backstop/run-backstop.sh openReport",
     "backstop:approve": "sh backstop/run-backstop.sh approve",
