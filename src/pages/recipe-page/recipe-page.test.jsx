@@ -1,22 +1,41 @@
-import RecipePage, {mapStateToProps} from './recipe-page'
-jest.mock('../../components/search-bar/search-bar')
+import configureStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import {Provider} from 'react-redux'
+import RecipePage from './recipe-page'
+import {searchForRecipeById} from '../../actions/search-for-recipe'
 
+const mockStore = configureStore([thunk])
 const cb = 'recipe'
 
+jest.mock('../../actions/search-for-recipe', () => ({
+    searchForRecipeById: jest.fn(() => ({type: 'script'})),
+}))
+
 describe('RecipePage', () => {
-    let props, render
+    let props, render, store, mockState
 
     beforeEach(() => {
-        props = {
-            name: 'Hermina',
-            img: 'a.jpg',
-            instructions: 'Drink slowly',
-            ingredients: ['a', 'b'],
-            loaded: true,
-            searchForRecipeById: jest.fn(),
+        mockState = {
+            selectedRecipe: {
+                name: 'Hermina',
+                img: 'a.jpg',
+                instructions: 'Drink slowly',
+                ingredients: ['a', 'b'],
+                loaded: true,
+            },
         }
 
-        render = (changedProps = {}) => mount(<RecipePage {...props} {...changedProps} />)
+        props = {
+            match: {params: {id: 42}},
+        }
+
+        store = mockStore(mockState)
+
+        render = (changedProps = {}) => mount(<Provider store={store}><RecipePage {...props} {...changedProps} /></Provider>)
+    })
+
+    afterEach(() => {
+        jest.clearAllMocks()
     })
 
     it('renders without crashing and displays props', () => {
@@ -30,29 +49,9 @@ describe('RecipePage', () => {
         expect(component.find(`.${cb}__instructions`).text()).toEqual('Drink slowly')
     })
 
-    it('does not crash without props', () => {
-        props = {}
-        const component = render()
-        expect(component.find(`.${cb}`).length).toEqual(1)
-    })
-
-    describe('mapStateToProps', () => {
-        [
-            {
-                description: 'undefined props',
-                state: {selectedRecipe: {}},
-                expected: {},
-            },
-            {
-                description: 'populated props',
-                state: {selectedRecipe: {loaded: true, img: 'a.jpg', ingredients: ['a', 'b'], name: 'Drink'}},
-                expected: {ingredients: ['a', 'b'], name: 'Drink', img: 'a.jpg', loaded: true},
-            },
-        ].forEach(test => {
-            it(`correctly maps state to props with ${test.description}`, () => {
-                const result = mapStateToProps(test.state)
-                expect(result).toEqual(test.expected)
-            })
-        })
+    it('calls recipe search action on mount', () => {
+        render()
+        expect(searchForRecipeById).toHaveBeenCalledTimes(1)
+        expect(searchForRecipeById).toHaveBeenCalledWith(42)
     })
 })

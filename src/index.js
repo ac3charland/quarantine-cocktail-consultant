@@ -8,7 +8,7 @@ import {NavBar} from './components/nav-bar/nav-bar'
 import Footer from './components/footer/footer'
 import HomePage from './pages/home-page/home-page'
 import makeStore from './store'
-import {ConnectedRecipePage} from './pages/recipe-page/recipe-page'
+import RecipePage from './pages/recipe-page/recipe-page'
 
 const store = makeStore()
 
@@ -22,7 +22,7 @@ ReactDOM.render(
             <div className='page-wrapper'>
               <Switch>
                 <Route exact path='/' component={HomePage} />
-                <Route path='/recipe/:id' component={ConnectedRecipePage} />
+                <Route path='/recipe/:id' component={RecipePage} />
                 <Route component={HomePage} />
               </Switch>
             </div>

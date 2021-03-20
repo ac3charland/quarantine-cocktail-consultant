@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import './home-page.scss'
 import {useSelector, useDispatch} from 'react-redux'
 import {retrieveIngredients} from '../../actions/get-ingredients'
 import SearchBar from '../../components/search-bar/search-bar'
 import {SearchResult} from '../../components/search-result/search-result'
 import {sortObjectsByName} from '../../utils/sort'
+import './home-page.scss'
 
 const cb = 'home'
 

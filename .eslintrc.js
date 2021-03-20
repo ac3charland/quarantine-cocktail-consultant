@@ -44,7 +44,8 @@ module.exports = {
         }
     ],
     plugins: [
-        'react'
+        'react',
+        'react-hooks'
     ],
     settings: {
         react: {
