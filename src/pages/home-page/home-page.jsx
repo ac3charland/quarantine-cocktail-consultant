@@ -16,6 +16,7 @@ const HomePage = () => {
 
     useEffect(() => {
         dispatch(retrieveIngredients())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     let filteredRecipes
