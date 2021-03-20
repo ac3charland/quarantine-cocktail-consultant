@@ -50,7 +50,7 @@ describe('HomePage', () => {
 
     it('displays and filters recipes', () => {
         const component = render()
-        component.find(`#filter-input`).simulate('change', {target: {value: 'aPpLe'}})
+        component.find('#filter-input').simulate('change', {target: {value: 'aPpLe'}})
         expect(component.find(SearchResult).at(0).prop('name')).toEqual('Apple juice')
         expect(component.find(SearchResult).at(0).prop('img')).toEqual('a.jpg')
         expect(component.find(SearchResult).length).toEqual(1)
